@@ -1,0 +1,6 @@
+Versão 1.5
+
+Pergunta quantos jogos e quantas dezenas quer jogar.
+Salva em um arquivo pergunta se quer imprimir (funciona apenas
+no Linux).
+Interage com o usuário perguntando se quer jogar novamente.
