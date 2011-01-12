@@ -17,12 +17,26 @@ versao = '1.5'
 def nomeArquivo():
 	ano=str(time.localtime()[0])
 	mes=str(time.localtime()[1])
+	if len(mes)==1:
+		mes = '%s%s' %('0',mes)
+		
 	dia=str(time.localtime()[2])
+	if len(dia)==1:
+		mes = '%s%s' %('0',dia)
+		
 	hora=str(time.localtime()[3])
+	if len(hora)==1:
+		mes = '%s%s' %('0',hora)
+		
 	min=str(time.localtime()[4])
-	seg=str(time.localtime()[5])
+	if len(min)==1:
+		mes = '%s%s' %('0',min)
+		
+	seg=str(time.localtime()[5])	
+	if len(seg) == 1:
+		seg = '%s%s' %('0',seg)
 	
-	nome='mg_%s-%s-%s_%s-%s-%s' %(dia,mes,ano,hora,min,seg)
+	nome='MS_%s-%s-%s_%s-%s-%s' %(ano,mes,dia,hora,min,seg)
 	return nome
 
 def imprimir(arquivo1):
