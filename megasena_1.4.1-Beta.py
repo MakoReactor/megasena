@@ -50,11 +50,11 @@ import time
 
 # Versão 1.4.1-Beta - 11/01/2011 - Programa salva arquivo com nome baseado
 # na hora e data de criação do arquivo. Função nomeArquivo() - pode-se 
-# formatar de varias maneiras. Ainda estudando melhor jeito para o nome.
+# formatar de varias maneiras. .
 
 
 # TODO - implementar funcionalidade de impresão também no windows.
-
+versao = '1.4.1-beta'
 def nomeArquivo():
 	ano=str(time.localtime()[0])
 	mes=str(time.localtime()[1])
@@ -69,7 +69,7 @@ def nomeArquivo():
 def imprimir(arquivo1):
 	resp = raw_input('GOSTARIA DE IMPRIMIR O RESULTADO? (s|n) ->')
 	if resp == 's' or resp == 'S':
-		os.system('lpr'+arquivo1)
+		os.system('lpr %s' %arquivo1)
 		print 'JOGO IMPRESSO'
 
 def salvaMostraNaTela(sorteioNum):
@@ -78,7 +78,8 @@ def salvaMostraNaTela(sorteioNum):
 	 
 	arquivo = (nomeArquivo())
 	jogomega = open(arquivo,'w')
-	jogomega.write('\tGERADO POR MEGASENA-1.2\n')
+	jogomega.write('\tGERADO POR MEGASENA-%s\n' %versao)
+	jogomega.write('\tARQUIVO %s\n' %arquivo)
 	jogomega.write('\t-----------------------')
 	for j in sorteioNum:
 		print '\n'
@@ -87,6 +88,7 @@ def salvaMostraNaTela(sorteioNum):
 			print '\t %2.i' %i,
 			jogomega.write("\t%s" %(str(i))+' '),
 	jogomega.close()
+	print '\n'
 	imprimir(arquivo)
 	
 
