@@ -13,7 +13,7 @@ import time
 #debuger
 #Elias
 
-# Controle da Versão BETA: Version "1.4.1"
+# Controle da Versão BETA: Version "1.4.1-beta"
 #
 # version 0.1: 03/01/2011 - Sorteia 6 dezenas aleatoriamente um número de 
 #cada lista. Considerar 00 como sendo o número 60.
