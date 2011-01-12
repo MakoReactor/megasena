@@ -2,6 +2,7 @@
 #coding: utf-8
 import random
 import os
+import time
 
 
 
@@ -12,7 +13,7 @@ import os
 #debuger
 #Elias
 
-# Controle da Versão BETA: Version "1.1-1"
+# Controle da Versão BETA: Version "1.4.1"
 #
 # version 0.1: 03/01/2011 - Sorteia 6 dezenas aleatoriamente um número de 
 #cada lista. Considerar 00 como sendo o número 60.
@@ -47,21 +48,36 @@ import os
 # na mesma pasta que o programa esta e pergunta se quer imprimir.
 # Usa o comando lpr do Linux para imprimir. 
 
+# Versão 1.4.1-Beta - 11/01/2011 - Programa salva arquivo com nome baseado
+# na hora e data de criação do arquivo. Função nomeArquivo() - pode-se 
+# formatar de varias maneiras. Ainda estudando melhor jeito para o nome.
+
 
 # TODO - implementar funcionalidade de impresão também no windows.
 
+def nomeArquivo():
+	ano=str(time.localtime()[0])
+	mes=str(time.localtime()[1])
+	dia=str(time.localtime()[2])
+	hora=str(time.localtime()[3])
+	min=str(time.localtime()[4])
+	seg=str(time.localtime()[5])
+	
+	nome='mg_%s-%s-%s_%s-%s-%s' %(dia,mes,ano,hora,min,seg)
+	return nome
 
-def imprimir():
+def imprimir(arquivo1):
 	resp = raw_input('GOSTARIA DE IMPRIMIR O RESULTADO? (s|n) ->')
 	if resp == 's' or resp == 'S':
-		os.system('lpr jogo.txt')
+		os.system('lpr %s' %arquivo1)
 		print 'JOGO IMPRESSO'
 
 def salvaMostraNaTela(sorteioNum):
 	"""Função que mostra na tela os numeros escolhidos
 	e salva em um arquivo"""
 	 
-	jogomega = open('jogo.txt','w')
+	arquivo = (nomeArquivo())
+	jogomega = open(arquivo,'w')
 	jogomega.write('\tGERADO POR MEGASENA-1.2\n')
 	jogomega.write('\t-----------------------')
 	for j in sorteioNum:
@@ -71,7 +87,8 @@ def salvaMostraNaTela(sorteioNum):
 			print '\t %2.i' %i,
 			jogomega.write("\t%s" %(str(i))+' '),
 	jogomega.close()
-	imprimir()
+	imprimir(arquivo)
+	
 
 def embaralhaSorteia(nJgos,nNum):		
 	n1 = range(1,61)
