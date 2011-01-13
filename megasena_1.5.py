@@ -3,6 +3,8 @@
 import random
 import os
 import time
+import sys
+
 
 #autor
 #Douglas Barbosa dos Santos
@@ -13,7 +15,14 @@ import time
 
 # Controle da Versão: Version "1.5"
 
-versao = '1.5'
+# Pega o nome do programa diretamente do parametro de execução,
+# no caso é o próprio nome. 
+
+versao = '%s' %(sys.argv[0][:-3])
+if versao[:2] == './':
+	versao = '%s' %sys.argv[0][2:-3]
+
+
 def nomeArquivo():
 	ano=str(time.localtime()[0])
 	mes=str(time.localtime()[1])
@@ -42,8 +51,9 @@ def nomeArquivo():
 def imprimir(arquivo1):
 	resp = raw_input('\tGOSTARIA DE IMPRIMIR O RESULTADO? (s|n) ->')
 	if resp == 's' or resp == 'S':
-		os.system('lpr %s' %arquivo1)
-		print 'JOGO IMPRESSO'
+		#os.system('lpr %s' %arquivo1) #desativada por enquanto
+		os.system('gedit %s' %arquivo1)
+		print '\tJOGO IMPRESSO'
 
 def salvaMostraNaTela(sorteioNum):
 	"""Função que mostra na tela os numeros escolhidos
@@ -51,9 +61,9 @@ def salvaMostraNaTela(sorteioNum):
 	 
 	arquivo = (nomeArquivo())
 	jogomega = open(arquivo,'w')
-	jogomega.write('\tGERADO POR MEGASENA-%s\n' %versao)
+	jogomega.write('\tGERADO POR : %s\n' %versao)
 	jogomega.write('\tARQUIVO %s\n' %arquivo)
-	jogomega.write('\t-----------------------')
+	jogomega.write('\t--------------------------------')
 	for j in sorteioNum:
 		print '\n'
 		jogomega.write('\n\n')
